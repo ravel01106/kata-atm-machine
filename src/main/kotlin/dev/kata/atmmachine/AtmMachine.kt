@@ -37,7 +37,7 @@ class AtmMachine: ATM {
             for (moneyType in MoneyType.entries){
                 if (copyQuantity >= moneyType.value){
                     moneyList[moneyType.value] = moneyList.getValue(moneyType.value) + 1
-                    copyQuantity -= moneyType.value.toInt()
+                    copyQuantity -= moneyType.value
                     break
                 }
             }
