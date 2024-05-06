@@ -10,31 +10,32 @@ class AtmMachine: ATM {
         return invoice
     }
 
-    private fun formatInvoice(moneyList:Map<String, Int>):String {
+    private fun formatInvoice(moneyList:Map<Int, Int>):String {
         var messageResult = ""
         for ( key in moneyList.keys.filter { moneyList.getValue(it) >= 1 }){
+            val isCoin = key == 1 || key == 2
             val value = moneyList.getValue(key)
             messageResult += if (moneyList.getValue(key) == 1){
-                if (key == "1" || key == "2") "$value moneda de $key\n"
+                if (isCoin) "$value moneda de $key\n"
                 else "$value billete de $key\n"
             }else{
-                if (key == "1" || key == "2") "$value monedas de $key\n"
+                if (isCoin) "$value monedas de $key\n"
                 else "$value billetes de $key\n"
             }
         }
         return messageResult.substring(0, messageResult.length -1)
     }
 
-    private fun obtainMoneyInBillsAndCoins(quantity:Int): Map<String, Int>{
+    private fun obtainMoneyInBillsAndCoins(quantity:Int): Map<Int, Int>{
         val moneyList = mutableMapOf(
-            "500" to 0, "200" to 0, "100" to 0, "50" to 0,
-            "20" to 0, "10" to 0, "5" to 0, "2" to 0,
-            "1" to 0,
+            500 to 0, 200 to 0, 100 to 0, 50 to 0,
+            20 to 0, 10 to 0, 5 to 0, 2 to 0,
+            1 to 0,
         )
         var copyQuantity = quantity
         while (copyQuantity > 0){
             for (moneyType in MoneyType.entries){
-                if (copyQuantity >= moneyType.value.toInt()){
+                if (copyQuantity >= moneyType.value){
                     moneyList[moneyType.value] = moneyList.getValue(moneyType.value) + 1
                     copyQuantity -= moneyType.value.toInt()
                     break
