@@ -49,5 +49,10 @@ class AtmMachineShould{
         val result = atmMachine.withdraw(434)
         assertEquals("2 billetes de 200\n1 billete de 20\n1 billete de 10\n2 monedas de 2", result)
     }
+    @Test
+    fun `withdraw the necessary bills and coins when the quantity entered is 1725`(){
+        val result = atmMachine.withdraw(1725)
+        assertEquals("3 billetes de 500\n1 billete de 200\n1 billete de 20\n1 billete de 5", result)
+    }
 
 }
