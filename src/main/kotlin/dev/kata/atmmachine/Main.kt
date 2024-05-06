@@ -1,5 +1,7 @@
 package dev.kata.atmmachine
 
+import dev.kata.atmmachine.models.MoneyType
+
 fun main(){
     var moneyList = mutableMapOf("500" to 0, "100" to 0, "10" to 0)
     println(moneyList.keys)
@@ -13,5 +15,9 @@ fun main(){
         result += "$key "
     }
     println(result)
+    println("---------------------------")
+    for (moneyType in MoneyType.entries){
+        println(moneyType.value)
+    }
 
 }
