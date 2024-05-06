@@ -10,6 +10,12 @@ class AtmMachineShould{
     // withdraw one twenty bill, one ten bill
     // withdraw the necessary bills and coins when the quantity entered is 1725
     @Test
+    fun `withdraw one five bill when the quantity entered is 5`(){
+        val atmMachine: AtmMachine = AtmMachine()
+        val result = atmMachine.withdraw(5)
+        assertEquals("1 billete de 5", result)
+    }
+    @Test
     fun `withdraw one coin when the quantity entered is 1`(){
         val atmMachine: AtmMachine = AtmMachine()
         val result = atmMachine.withdraw(1)
