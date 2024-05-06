@@ -4,9 +4,13 @@ import dev.kata.atmmachine.interfaces.ATM
 
 class AtmMachine: ATM {
     override fun withdraw(quantity: Int): String {
-        var messageResult = ""
-        var moneyList = obtainMoneyInBillsAndCoins(quantity)
+        val moneyList = obtainMoneyInBillsAndCoins(quantity)
+        val invoice = formatInvoice(moneyList)
+        return invoice
+    }
 
+    private fun formatInvoice(moneyList:Map<String, Int>):String {
+        var messageResult = ""
         for ( key in moneyList.keys.filter { moneyList.getValue(it) >= 1 }){
             val value = moneyList.getValue(key)
             messageResult += if (moneyList.getValue(key) == 1){
