@@ -4,14 +4,29 @@ import dev.kata.atmmachine.interfaces.ATM
 
 class AtmMachine: ATM {
     override fun withdraw(quantity: Int): String {
-        var copyQuantity = quantity
         var messageResult = ""
+        var moneyList = obtainMoneyInBillsAndCoins(quantity)
+
+        for ( key in moneyList.keys.filter { moneyList.getValue(it) >= 1 }){
+            val value = moneyList.getValue(key)
+            messageResult += if (moneyList.getValue(key) == 1){
+                if (key == "1" || key == "2") "$value moneda de $key\n"
+                else "$value billete de $key\n"
+            }else{
+                if (key == "1" || key == "2") "$value monedas de $key\n"
+                else "$value billetes de $key\n"
+            }
+        }
+        return messageResult.substring(0, messageResult.length -1)
+    }
+
+    private fun obtainMoneyInBillsAndCoins(quantity:Int): Map<String, Int>{
         var moneyList = mutableMapOf(
             "500" to 0, "200" to 0, "100" to 0, "50" to 0,
             "20" to 0, "10" to 0, "5" to 0, "2" to 0,
             "1" to 0,
         )
-
+        var copyQuantity = quantity
         while (copyQuantity > 0){
             when(copyQuantity){
                 in 500..1500 -> {
@@ -50,21 +65,9 @@ class AtmMachine: ATM {
                     moneyList["1"] = moneyList.getValue("1") + 1
                     copyQuantity -= 1
                 }
-                else -> copyQuantity -= 1
-            }
-
-        }
-        for ( key in moneyList.keys.filter { moneyList.getValue(it) >= 1 }){
-            val value = moneyList.getValue(key)
-            messageResult += if (moneyList.getValue(key) == 1){
-                if (key == "1" || key == "2") "$value moneda de $key\n"
-                else "$value billete de $key\n"
-            }else{
-                if (key == "1" || key == "2") "$value monedas de $key\n"
-                else "$value billetes de $key\n"
             }
         }
-        return messageResult.substring(0, messageResult.length -1)
+        return moneyList.toMap()
     }
 
 }
