@@ -47,7 +47,7 @@ class AtmMachineTwoShould{
     }
 
     @Test
-    fun `withdraw two five-hundred bills when the quantity entered is 1000`(){
+    fun `when the quantity entered is 1000, 0 units of five-hundred bills will remain inside the machine`(){
         val message = atmMachine.withdraw(1000)
         val result = atmMachine.getQuantitiesStoredBy(MoneyType.FIVE_HUNDRED)
         assertEquals("2 billetes de 500", message)
@@ -60,6 +60,27 @@ class AtmMachineTwoShould{
         val result = atmMachine.getQuantitiesStoredBy(MoneyType.FIVE_HUNDRED)
         assertEquals(0, result)
         assertEquals("2 billetes de 500\n2 billetes de 200\n1 billete de 100", message)
+
+    }
+
+    @Test
+    fun `when the quantity entered is 1725, the quantities of bills and coins in the machine shall be updated`() {
+        val message = atmMachine.withdraw(1725)
+        val resultFiveHundredBills = atmMachine.getQuantitiesStoredBy(MoneyType.FIVE_HUNDRED)
+        val resultTwoHundredBills = atmMachine.getQuantitiesStoredBy(MoneyType.TWO_HUNDRED)
+        val resultOneHundredBills = atmMachine.getQuantitiesStoredBy(MoneyType.ONE_HUNDRED)
+        val resulTwentyBills = atmMachine.getQuantitiesStoredBy(MoneyType.TWENTY)
+        val resultFiveBills = atmMachine.getQuantitiesStoredBy(MoneyType.FIVE)
+        assertEquals("2 billetes de 500" +
+                "\n3 billetes de 200" +
+                "\n1 billete de 100" +
+                "\n1 billete de 20" +
+                "\n1 billete de 5", message)
+        assertEquals(0,resultFiveHundredBills)
+        assertEquals(0,resultTwoHundredBills)
+        assertEquals(4,resultOneHundredBills)
+        assertEquals(19,resulTwentyBills)
+        assertEquals(99,resultFiveBills)
 
     }
 
