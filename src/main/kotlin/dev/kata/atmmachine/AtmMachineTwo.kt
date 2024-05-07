@@ -38,7 +38,7 @@ class AtmMachineTwo:ATM {
         var copyQuantity = quantity
         while (copyQuantity > 0) {
             for (moneyType in MoneyType.entries) {
-                if (copyQuantity >= moneyType.value) {
+                if (copyQuantity >= moneyType.value && getQuantitiesStoredBy(moneyType) > 0) {
                     warehouse[getMoneyBy(moneyType)] = warehouse.getValue(getMoneyBy(moneyType)) + 1
                     setQuantityStoredBy(moneyType)
 

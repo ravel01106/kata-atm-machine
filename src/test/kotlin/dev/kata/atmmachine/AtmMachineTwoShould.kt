@@ -10,8 +10,6 @@ class AtmMachineTwoShould{
     // when the quantity entered is 5, 99 units of five bills will remain inside the machine.
     // when the quantity entered is 15, 49 units of ten bills and 99 bills will remain inside the machine.
     // when the quantity entered is 1000, 0 units of five-hundred bills will remain inside the machine.
-    // when the quantity entered is 64, the quantities of bills and coins in the machine shall be updated.
-    // when the quantity entered is 434, the quantities of bills and coins in the machine shall be updated.
     // when the quantity entered is 1500, 0 units of five-hundred bills will remain inside the machine.
     // when the quantity entered is 1725, the quantities of bills and coins in the machine shall be updated.
     private var atmMachine: AtmMachineTwo = AtmMachineTwo()
