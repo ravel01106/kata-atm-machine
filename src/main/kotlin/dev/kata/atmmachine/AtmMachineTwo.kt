@@ -25,7 +25,7 @@ class AtmMachineTwo:ATM {
         var messageResult = ""
         val warehouseFiltered = warehouse.filter { it.value >= 1 }
         warehouseFiltered.forEach {
-            messageResult += formatEachLineOfInvoice(it.key.value.value, it.value)
+            messageResult += formatEachLineOfInvoice(it.value, it.key.value.value)
         }
         return messageResult.substring(0, messageResult.length - 1)
     }

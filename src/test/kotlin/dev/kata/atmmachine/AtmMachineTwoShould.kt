@@ -27,4 +27,15 @@ class AtmMachineTwoShould{
         assertEquals(499, result)
 
     }
+
+    @Test
+    fun `when the quantity entered is 5, 99 units of five bills will remain inside the machine`(){
+        val message = atmMachine.withdraw(5)
+        val result = atmMachine.getQuantitiesStoredBy(MoneyType.FIVE)
+        assertEquals(99, result)
+        assertEquals("1 billete de 5", message)
+
+    }
+
+
 }
