@@ -41,11 +41,13 @@ class AtmMachineTwo:ATM {
                 if (copyQuantity >= moneyType.value) {
                     warehouse[getMoneyBy(moneyType)] = warehouse.getValue(getMoneyBy(moneyType)) + 1
                     setQuantityStoredBy(moneyType)
+
                     copyQuantity -= moneyType.value
                     break
                 }
             }
         }
+
     }
 
     private fun formatEachLineOfInvoice(quantity:Int, value:Int ):String {
